@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "FrontNVP"
+    }
+  },
+  "defaultProject": "FrontNVP",
+  "cli": {
+    "analytics": "097ef633-3827-4b63-bea6-4ed090bcab90"
+  }
 }

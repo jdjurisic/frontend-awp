@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainpageComponent } from './components/mainpage/mainpage.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
- 
+  {path: 'main', component: MainpageComponent},
+  {path: '**', component: PagenotfoundComponent },  // Wildcard route for a 404 page
+
 ];
 
 @NgModule({

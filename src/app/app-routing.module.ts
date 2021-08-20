@@ -7,8 +7,8 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 
 const routes: Routes = [
   {path: '', component: LoginComponent, canActivate: [AuthGuard]},
+  {path: 'main', component: MainpageComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'main', component: MainpageComponent},
   {path: '**', component: PagenotfoundComponent },  // Wildcard route for a 404 page
 
 ];

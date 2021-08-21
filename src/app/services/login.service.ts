@@ -54,7 +54,7 @@ export class LoginService implements OnDestroy  {
   }
 
   getJwtToken() {
-    return localStorage.retrieve('jwt');
+    return localStorage.getItem("jwt");
   }
 
   getDecodedAccessToken(token: string): any {

@@ -10,13 +10,15 @@ import { LoginService } from './services/login.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainpageComponent } from './components/mainpage/mainpage.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { TopmenuComponent } from './components/topmenu/topmenu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MainpageComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    TopmenuComponent
   ],
   imports: [
     BrowserModule,

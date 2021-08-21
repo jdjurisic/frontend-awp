@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainpageComponent implements OnInit {
 
+  isUserType:boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+
+    if(localStorage.getItem("usertype") != "ROLE_ADMIN"){
+      this.isUserType = true;
+    }
+    
   }
 
 }

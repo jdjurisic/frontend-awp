@@ -3,6 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { map } from 'rxjs/operators'
 import { ActivatedRoute, Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
+import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +32,17 @@ export class LoginService implements OnDestroy  {
     o.password = password;
 
     return this.http.post<any>(this.loginUrl, o).pipe(map( response => {
+
+      let tokenInfo = this.getDecodedAccessToken(response.jwt); // decode token
+
+      // console.log(tokenInfo); // show decoded token object in console
+      // console.log(tokenInfo.sub);
+      // console.log(tokenInfo.type[0].authority);
+
       localStorage.setItem("jwt", response.jwt);
-      localStorage.setItem("username", username);
+      localStorage.setItem("username", tokenInfo.sub);
+      localStorage.setItem("usertype", tokenInfo.type[0].authority);
+      
     },
       (error: any) => {
       console.log("Login failed.");
@@ -44,6 +55,15 @@ export class LoginService implements OnDestroy  {
 
   getJwtToken() {
     return localStorage.retrieve('jwt');
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try{
+        return jwt_decode(token);
+    }
+    catch(Error){
+        return null;
+    }
   }
   
 }

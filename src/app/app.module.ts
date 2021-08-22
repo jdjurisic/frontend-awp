@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainpageComponent } from './components/mainpage/mainpage.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { TopmenuComponent } from './components/topmenu/topmenu.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TopmenuComponent } from './components/topmenu/topmenu.component';
     LoginComponent,
     MainpageComponent,
     PagenotfoundComponent,
-    TopmenuComponent
+    TopmenuComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

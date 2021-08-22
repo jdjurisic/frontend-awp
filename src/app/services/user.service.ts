@@ -1,0 +1,23 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { error } from 'protractor';
+import { map } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+
+  private readonly userUrl = 'http://localhost:8080/users/getByUsername/'
+  
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute,
+    private router: Router) { }
+
+  getNumberOfReservations(){
+    return this.http.get<any>(this.userUrl + localStorage.getItem("username"));
+  }
+
+  
+
+}

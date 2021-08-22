@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-topmenu',
@@ -30,7 +31,7 @@ export class TopmenuComponent implements OnInit {
     {linkName: 'AAirline Info', url:'/airline'}
   ]
 
-  constructor(private authService: LoginService, private router: Router) { }
+  constructor(private authService: LoginService, private router: Router, private userService:UserService) { }
 
   ngOnInit(): void {
     if(this.authService.isLoggedIn()){
@@ -49,8 +50,17 @@ export class TopmenuComponent implements OnInit {
 
     this.username = localStorage.getItem("username");
 
-    // TODO implement backend call
-    this.numberOfReservations = 69;
+    if(this.typeOfUser == "user")
+    {
+      this.userService.getNumberOfReservations().subscribe(data =>{
+        this.numberOfReservations = data.reservations.length;
+      },
+      error =>{
+        this.numberOfReservations = 0;
+      });
+    }
+
+   
 
     
   }

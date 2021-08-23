@@ -25,7 +25,7 @@
       <td>{{ res.ticket.departureDate }}</td>
       <td>{{ res.ticket.returnDate ? res.ticket.returnDate : "Not available" }}</td>
       <td>{{ res.isAvailable ? "Available" : "Expired" }}</td>
-      <td> <button type="button" class="btn btn-warning btn-sm" (click)="cancelReservation(res)">Cancel</button> </td>
+      <td> <button type="button" class="btn btn-warning btn-sm" (click)="cancelReservation(res)" [disabled]="!res.isAvailable">Cancel</button> </td>
     </tr>
     </tbody>
   </table>

@@ -28,6 +28,9 @@ export class ReservationspageComponent implements OnInit {
 
   }
 
+  cancelReservation(res:any){
+    console.log("Prosledjen objekat:" + res.id);
+  }
 
   
 }

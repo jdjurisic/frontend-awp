@@ -21,12 +21,13 @@ export class TopmenuComponent implements OnInit {
 
   userRoutes = [
     {linkName: 'Main Page', url: '/main'},
-    {linkName: 'Ticket Table', url: '/table'},
+    {linkName: 'Reservations', url: '/reservations'},
     {linkName: 'Airline Info', url:'/airline'}
   ]
 
   adminRoutes = [
     {linkName: 'AMain Page', url: '/main'},
+    {linkName: 'Reservations', url: '/reservations'},
     {linkName: 'ATicket Table', url: '/table'},
     {linkName: 'AAirline Info', url:'/airline'}
   ]

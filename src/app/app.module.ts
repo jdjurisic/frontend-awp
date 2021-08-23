@@ -13,6 +13,9 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { TopmenuComponent } from './components/topmenu/topmenu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { ReservationspageComponent } from './components/reservationspage/reservationspage.component';
+import { UsertypeGuard } from './auth/usertype.guard';
+import { AdmintypeGuard } from './auth/admintype.guard';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     MainpageComponent,
     PagenotfoundComponent,
     TopmenuComponent,
-    FooterComponent
+    FooterComponent,
+    ReservationspageComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [ AuthGuard, LoginService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}],
+  providers: [ AuthGuard,UsertypeGuard, AdmintypeGuard, LoginService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

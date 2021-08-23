@@ -1,0 +1,30 @@
+<app-topmenu></app-topmenu>
+
+<div *ngIf="reservations.length > 0">
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Origin</th>
+      <th scope="col">Destination</th>
+      <th scope="col">Company</th>
+      <th scope="col">Type</th>
+      <th scope="col">Departure</th>
+      <th scope="col">Return Date</th>
+      <th scope="col">Availability</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let res of reservations; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ res.ticket.flight.origin.name }}</td>
+      <td>{{ res.ticket.flight.destination.name }}</td>
+      <td>{{ res.ticket.company.name }}</td>
+      <td>{{ res.ticket.one_way ? "Oneway" : "Round trip" }}</td>
+      <td>{{ res.ticket.departureDate }}</td>
+      <td>{{ res.ticket.returnDate ? res.ticket.returnDate : "Not available" }}</td>
+      <td>{{ res.isAvailable ? "Available" : "Expired" }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -7,7 +7,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TicketService {
 
+  private readonly ticketUrl = 'http://localhost:8080/tickets'
+
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute,
     private router: Router) { }
-    
+
+  createNewTicket(ticket: any){
+    return this.http.post<any>(this.ticketUrl, ticket);
+  }
+  
 }

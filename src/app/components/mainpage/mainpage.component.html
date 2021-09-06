@@ -1,14 +1,22 @@
 <app-topmenu></app-topmenu>
 
 <!-- Create User Form -->
-<div *ngIf="!isUserType" class="wrapper">
-    <div id="formContent">
+<div *ngIf="!isUserType" class="wrapper2 row">
+    <div id="formContent" class="span6">
     <form [formGroup]="createUserForm" (ngSubmit)="createUser()">
-        <input type="text" id="user_name" [formControlName]="'username'" name="user_name" placeholder="username" required>
-        <input type="text" id="password" [formControlName]="'password'" name="password" placeholder="password" required>
+        <div>
+            <label>username</label>
+            <input type="text" [formControlName]="'username'" name="user_name" required>
+        </div>
+       
+        <div>
+            <label>password</label>
+            <input type="text" [formControlName]="'password'" name="password" required>
+        </div>
+       
 
         <div>
-            <label>Pick usertype</label>
+            <label>pick user type</label>
             <select [formControlName]="'usertype'" name="usertype" required>
                 <option *ngFor="let ut of backendUserTypes" [ngValue]="ut">
                     {{ ut }}
@@ -20,11 +28,10 @@
     </form>
     </div>
 
-    <div id="formContent2">
+    <div id="formContent2" class="span6">
         <form [formGroup]="createTicketForm" (ngSubmit)="createTicket()">
-
             <div>
-                <label>Choose company</label>
+                <label>company</label>
                 <select [formControlName]="'company'" name="company" required>
                     <option *ngFor="let cmp of companies" [ngValue]="cmp">
                         {{ cmp.name }}
@@ -33,7 +40,7 @@
             </div>
 
             <div>
-                <label>Choose flight</label>
+                <label>flight</label>
                 <select [formControlName]="'flight'" name="flight" required>
                     <option *ngFor="let flg of flights" [ngValue]="flg">
                         {{ flg.origin.name }} - {{ flg.destination.name }}
@@ -42,20 +49,31 @@
             </div>
 
             <div>
-                <label>Choose type</label>
+                <label>type</label>
                 <select [formControlName]="'oneway'" name="oneway" required>
                     <option selected value="false">Roundtrip</option>
                     <option value="true">Oneway</option>
                 </select>
             </div>
-            
 
+            <div>
+                <label>no. of tickets</label>
+                <input type="number" [formControlName]="'count'" name="count" required>
+            </div>
+
+            <div>
+                <label>departure</label>
+                <input type="datetime-local" [formControlName]="'departureDate'" name="depart">
+            </div>
+
+            <div>
+                <label>return</label>
+                <input type="datetime-local" [formControlName]="'returnDate'" name="returndate">
+            </div>
+            
             
             <input type="submit" value="Create ticket">
         </form>
         </div>
-
-
-
 
 </div>

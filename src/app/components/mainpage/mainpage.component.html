@@ -107,8 +107,8 @@
           <td> <button *ngIf="!isUserType" type="button" class="btn btn-danger btn-sm">delete</button> </td>
           <td> <button *ngIf="!isUserType" type="button" class="btn btn-warning btn-sm">edit</button> </td>
           <td *ngIf="isUserType">           
-            <input type="number" name="reservationCounter"> 
-            <button type="button" class="btn btn-warning btn-sm">reserve</button> 
+            <input type="number" name="reservationCounter" id="{{i}}"> 
+            <button type="button" class="btn btn-warning btn-sm" (click)="reserve(i)">reserve</button> 
           </td>
         </tr>
         </tbody>

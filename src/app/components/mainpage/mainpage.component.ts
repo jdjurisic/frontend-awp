@@ -136,7 +136,13 @@ export class MainpageComponent implements OnInit {
 
   }
 
+  reserve(i: any){
 
+    let noOfTickets = (<HTMLInputElement>document.getElementById(i)).value;
+    console.log(noOfTickets);
+
+    // fja za rezervaciju 
+  }
 
 
 }

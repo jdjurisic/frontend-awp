@@ -1,2 +1,61 @@
 <app-topmenu></app-topmenu>
-<p>mainpage works!</p>
+
+<!-- Create User Form -->
+<div *ngIf="!isUserType" class="wrapper">
+    <div id="formContent">
+    <form [formGroup]="createUserForm" (ngSubmit)="createUser()">
+        <input type="text" id="user_name" [formControlName]="'username'" name="user_name" placeholder="username" required>
+        <input type="text" id="password" [formControlName]="'password'" name="password" placeholder="password" required>
+
+        <div>
+            <label>Pick usertype</label>
+            <select [formControlName]="'usertype'" name="usertype" required>
+                <option *ngFor="let ut of backendUserTypes" [ngValue]="ut">
+                    {{ ut }}
+                </option>
+            </select>    
+        </div>
+        
+        <input type="submit" value="Create user">
+    </form>
+    </div>
+
+    <div id="formContent2">
+        <form [formGroup]="createTicketForm" (ngSubmit)="createTicket()">
+
+            <div>
+                <label>Choose company</label>
+                <select [formControlName]="'company'" name="company" required>
+                    <option *ngFor="let cmp of companies" [ngValue]="cmp">
+                        {{ cmp.name }}
+                    </option>
+                </select>    
+            </div>
+
+            <div>
+                <label>Choose flight</label>
+                <select [formControlName]="'flight'" name="flight" required>
+                    <option *ngFor="let flg of flights" [ngValue]="flg">
+                        {{ flg.origin.name }} - {{ flg.destination.name }}
+                    </option>
+                </select>    
+            </div>
+
+            <div>
+                <label>Choose type</label>
+                <select [formControlName]="'oneway'" name="oneway" required>
+                    <option selected value="false">Roundtrip</option>
+                    <option value="true">Oneway</option>
+                </select>
+            </div>
+            
+
+            
+            <input type="submit" value="Create ticket">
+        </form>
+        </div>
+
+
+
+
+</div>

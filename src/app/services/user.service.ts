@@ -9,15 +9,22 @@ import { map } from 'rxjs/operators';
 })
 export class UserService {
 
-  private readonly userUrl = 'http://localhost:8080/users/getByUsername/'
+  private readonly userUrl = 'http://localhost:8080/users'
   
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute,
     private router: Router) { }
 
   getNumberOfReservations(){
-    return this.http.get<any>(this.userUrl + localStorage.getItem("username"));
+    return this.http.get<any>(this.userUrl + "/getByUsername/" + localStorage.getItem("username"));
   }
 
+  getUserTypes(){
+    return this.http.get<any>(this.userUrl + "/types");
+  }
+
+  createNewUser(user: any){
+    return this.http.post<any>(this.userUrl, user);
+  }
   
 
 }

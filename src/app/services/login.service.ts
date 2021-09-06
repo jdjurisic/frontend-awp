@@ -23,6 +23,7 @@ export class LoginService implements OnDestroy  {
   logout(){
     localStorage.removeItem("jwt");
     localStorage.removeItem("username");
+    localStorage.removeItem("usertype");
   }
 
   login(username:string, password:string) {

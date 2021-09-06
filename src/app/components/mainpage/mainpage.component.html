@@ -1,6 +1,6 @@
 <app-topmenu></app-topmenu>
 
-<!-- Create User Form -->
+<!-- Create User/Ticket Form -->
 <div *ngIf="!isUserType" class="wrapper2 row">
     <div id="formContent" class="span6">
     <form [formGroup]="createUserForm" (ngSubmit)="createUser()">
@@ -58,7 +58,7 @@
 
             <div>
                 <label>no. of tickets</label>
-                <input type="number" [formControlName]="'count'" name="count" required>
+                <input type="number" class="myinput" [formControlName]="'count'" name="count" required>
             </div>
 
             <div>
@@ -75,5 +75,42 @@
             <input type="submit" value="Create ticket">
         </form>
         </div>
-
 </div>
+
+<!-- Ticket table -->
+<div *ngIf="tickets.length > 0" class="wrapper2">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Origin</th>
+          <th scope="col">Destination</th>
+          <th scope="col">Company</th>
+          <th scope="col">Type</th>
+          <th scope="col">Departure</th>
+          <th scope="col">Return Date</th>
+          <th scope="col">Count</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tick of tickets; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ tick.flight.origin.name }}</td>
+          <td>{{ tick.flight.destination.name }}</td>
+          <td>{{ tick.company.name }}</td>
+          <td>{{ tick.oneway ? "Oneway" : "Round trip" }}</td>
+          <td>{{ tick.departureDate }}</td>
+          <td>{{ tick.returnDate ? tick.returnDate : "Not available" }}</td>
+          <td>{{ tick.count }}</td>
+          <td> <button *ngIf="!isUserType" type="button" class="btn btn-danger btn-sm">delete</button> </td>
+          <td> <button *ngIf="!isUserType" type="button" class="btn btn-warning btn-sm">edit</button> </td>
+          <td *ngIf="isUserType">           
+            <input type="number" name="reservationCounter"> 
+            <button type="button" class="btn btn-warning btn-sm">reserve</button> 
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>

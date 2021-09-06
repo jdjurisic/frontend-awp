@@ -20,8 +20,9 @@ export class MainpageComponent implements OnInit {
   createTicketForm: FormGroup;
 
   backendUserTypes: String[];
-  companies: [];
-  flights: [];
+  companies: [] = [];
+  flights: [] = [];
+  tickets: [] = [];
 
 
   constructor(private userService:UserService, private flightService:FlightService, private companyService:CompanyService, private ticketService:TicketService ) { 
@@ -39,7 +40,6 @@ export class MainpageComponent implements OnInit {
       flight: new FormControl('', Validators.required),
       count: new FormControl('', Validators.min(1))
     });
-
   }
 
   ngOnInit(): void {
@@ -65,12 +65,15 @@ export class MainpageComponent implements OnInit {
       this.flightService.getFlights().subscribe(data =>{
         this.flights = data;
       });
-    
     }
 
-    
-    
+    // both
+    this.ticketService.getAllTickets().subscribe(data =>{
+      this.tickets = data;
+    });
+
   }
+
 
   createUser(){
 
@@ -130,7 +133,10 @@ export class MainpageComponent implements OnInit {
     }));
 
     this.createTicketForm.reset();
+
   }
+
+
 
 
 }

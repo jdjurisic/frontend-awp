@@ -15,5 +15,8 @@ export class TicketService {
   createNewTicket(ticket: any){
     return this.http.post<any>(this.ticketUrl, ticket);
   }
-  
+
+  getAllTickets(){
+    return this.http.get<any>(this.ticketUrl + "/all");
+  }
 }

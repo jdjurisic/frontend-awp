@@ -30,7 +30,6 @@ export class ReservationspageComponent implements OnInit {
   }
 
   cancelReservation(res:any){
-    console.log("Prosledjen objekat:" + res.id);
     this.reservationService.cancelReservation(res.id).subscribe(data =>{
       alert("Canceled.");
       this.ngOnInit();

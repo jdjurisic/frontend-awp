@@ -16,8 +16,8 @@ export class TicketService {
     return this.http.post<any>(this.ticketUrl, ticket);
   }
 
-  getAllTickets(){
-    return this.http.get<any>(this.ticketUrl + "/all");
+  getAllTickets(pageNumber: any){
+    return this.http.get<any>(this.ticketUrl + "/all/" + pageNumber);
   }
 
   deleteTicketById(id: string){

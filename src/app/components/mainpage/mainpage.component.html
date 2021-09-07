@@ -82,7 +82,6 @@
     <table class="table table-striped">
         <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Origin</th>
           <th scope="col">Destination</th>
           <th scope="col">Company</th>
@@ -96,7 +95,6 @@
         </thead>
         <tbody>
         <tr *ngFor="let tick of tickets; index as i">
-          <th scope="row">{{ i + 1 }}</th>
           <td>{{ tick.flight.origin.name }}</td>
           <td>{{ tick.flight.destination.name }}</td>
           <td>{{ tick.company.name }}</td>
@@ -113,4 +111,11 @@
         </tr>
         </tbody>
       </table>
+
+      <div class="row">
+        <button (click)="paginateBack()" class="btn btn-info"> Back </button>
+        <p style="margin-left: 20px; margin-right: 20px; margin-top: 10px;"> {{ currentPage }} </p>
+        <button (click)="paginateNext()" class="btn btn-info"> Next </button>
+      </div>
+
     </div>

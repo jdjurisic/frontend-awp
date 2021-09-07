@@ -26,6 +26,9 @@ export class MainpageComponent implements OnInit {
   flights: [] = [];
   tickets: [] = [];
 
+  maxPage: number;
+  currentPage: number;
+
 
   constructor(private userService:UserService, private flightService:FlightService, private companyService:CompanyService, private ticketService:TicketService, private reservationService: ReservationService,   private router: Router ) { 
     this.createUserForm = new FormGroup({
@@ -70,8 +73,10 @@ export class MainpageComponent implements OnInit {
     }
 
     // both
-    this.ticketService.getAllTickets().subscribe(data =>{
-      this.tickets = data;
+    this.ticketService.getAllTickets(0).subscribe(data =>{
+      this.tickets = data.content;
+      this.maxPage = data.totalPages;
+      this.currentPage = 0;
     });
 
   }
@@ -155,8 +160,8 @@ export class MainpageComponent implements OnInit {
   deleteTicket(tick: any){
     this.ticketService.deleteTicketById(tick.id).subscribe(data =>{
       alert("Successfully deleted.");
-      this.ticketService.getAllTickets().subscribe(data =>{
-        this.tickets = data;
+      this.ticketService.getAllTickets(0).subscribe(data =>{
+        this.tickets = data.content;
       });
     },
     (error =>{
@@ -168,5 +173,23 @@ export class MainpageComponent implements OnInit {
 
   editTicket(tick: any){
     this.router.navigate(["/tedit/"+tick.id]);
+  }
+
+  paginateBack(){
+    if(this.currentPage > 0){
+      this.currentPage --;
+    }
+    this.ticketService.getAllTickets(this.currentPage).subscribe(data =>{
+      this.tickets = data.content;
+    });
+  }
+
+  paginateNext(){
+    if(this.currentPage < this.maxPage){
+      this.currentPage ++;
+    }
+    this.ticketService.getAllTickets(this.currentPage).subscribe(data =>{
+      this.tickets = data.content;
+    });
   }
 }

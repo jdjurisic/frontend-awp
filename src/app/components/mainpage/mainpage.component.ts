@@ -29,6 +29,9 @@ export class MainpageComponent implements OnInit {
   maxPage: number;
   currentPage: number;
 
+  ticketTypeFilter:string[] = ["all", "oneway", "roundtrip"];
+  selectedType:string = "all";
+
 
   constructor(private userService:UserService, private flightService:FlightService, private companyService:CompanyService, private ticketService:TicketService, private reservationService: ReservationService,   private router: Router ) { 
     this.createUserForm = new FormGroup({
@@ -179,17 +182,71 @@ export class MainpageComponent implements OnInit {
     if(this.currentPage > 0){
       this.currentPage --;
     }
-    this.ticketService.getAllTickets(this.currentPage).subscribe(data =>{
-      this.tickets = data.content;
-    });
+
+    if(this.selectedType == "all"){
+      this.ticketService.getAllTickets(this.currentPage).subscribe(data =>{
+        this.tickets = data.content;
+      });
+    }
+    else if(this.selectedType == "oneway"){
+      this.ticketService.getOnewayTickets(this.currentPage).subscribe(data =>{
+        this.tickets = data.content;
+      });
+    }
+    else if(this.selectedType == "roundtrip"){
+      this.ticketService.getRoundtripTickets(this.currentPage).subscribe(data =>{
+        this.tickets = data.content;
+      });
+    }
   }
 
   paginateNext(){
-    if(this.currentPage < this.maxPage){
+    if(this.currentPage < this.maxPage - 1){
       this.currentPage ++;
     }
-    this.ticketService.getAllTickets(this.currentPage).subscribe(data =>{
-      this.tickets = data.content;
-    });
+
+    if(this.selectedType == "all"){
+      this.ticketService.getAllTickets(this.currentPage).subscribe(data =>{
+        this.tickets = data.content;
+      });
+    }
+    else if(this.selectedType == "oneway"){
+      this.ticketService.getOnewayTickets(this.currentPage).subscribe(data =>{
+        this.tickets = data.content;
+      });
+    }
+    else if(this.selectedType == "roundtrip"){
+      this.ticketService.getRoundtripTickets(this.currentPage).subscribe(data =>{
+        this.tickets = data.content;
+
+      });
+    }
+
+  }
+
+  radioChangedHandler(event:any){
+    this.selectedType = event.target.value;
+    console.log(this.selectedType);
+    if(this.selectedType == "all"){
+      this.ticketService.getAllTickets(0).subscribe(data =>{
+        this.tickets = data.content;
+        this.maxPage = data.totalPages;
+        this.currentPage = 0;
+      });
+    }
+    else if(this.selectedType == "oneway") {
+      this.ticketService.getOnewayTickets(0).subscribe(data =>{
+        this.tickets = data.content;
+        this.maxPage = data.totalPages;
+        this.currentPage = 0;
+      });
+    }
+    else if(this.selectedType == "roundtrip"){
+      this.ticketService.getRoundtripTickets(0).subscribe(data =>{
+        this.tickets = data.content;
+        this.maxPage = data.totalPages;
+        this.currentPage = 0;
+      });
+    }
   }
 }

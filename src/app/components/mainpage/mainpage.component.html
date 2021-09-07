@@ -79,6 +79,14 @@
 
 <!-- Ticket table -->
 <div *ngIf="tickets.length > 0" class="wrapper2">
+    
+    <div class="container">
+        <div class="form-check form-check-inline" *ngFor="let t of ticketTypeFilter">
+            <input type="radio" name="ticket" value="{{t}}" (change)="radioChangedHandler($event)">
+            <i>{{t}}</i>
+        </div>
+    </div>
+
     <table class="table table-striped">
         <thead>
         <tr>

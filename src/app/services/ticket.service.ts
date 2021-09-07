@@ -20,6 +20,14 @@ export class TicketService {
     return this.http.get<any>(this.ticketUrl + "/all/" + pageNumber);
   }
 
+  getOnewayTickets(pageNumber: any){
+    return this.http.get<any>(this.ticketUrl + "/oneway/" + pageNumber);
+  }
+
+  getRoundtripTickets(pageNumber: any){
+    return this.http.get<any>(this.ticketUrl + "/roundtrip/" + pageNumber);
+  }
+
   deleteTicketById(id: string){
     return this.http.delete<any>(this.ticketUrl + "/" + id);
   }

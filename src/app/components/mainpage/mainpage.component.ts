@@ -5,6 +5,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Router } from '@angular/router';
 import { CompanyService } from 'src/app/services/company.service';
 import { FlightService } from 'src/app/services/flight.service';
+import { ReservationService } from 'src/app/services/reservation.service';
 import { TicketService } from 'src/app/services/ticket.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -26,7 +27,7 @@ export class MainpageComponent implements OnInit {
   tickets: [] = [];
 
 
-  constructor(private userService:UserService, private flightService:FlightService, private companyService:CompanyService, private ticketService:TicketService,   private router: Router ) { 
+  constructor(private userService:UserService, private flightService:FlightService, private companyService:CompanyService, private ticketService:TicketService, private reservationService: ReservationService,   private router: Router ) { 
     this.createUserForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(6)]),
       password: new FormControl('', Validators.required),
@@ -137,12 +138,18 @@ export class MainpageComponent implements OnInit {
 
   }
 
-  reserve(i: any){
+  reserve(i: any, tick:any){
 
     let noOfTickets = (<HTMLInputElement>document.getElementById(i)).value;
-    console.log(noOfTickets);
 
-    // fja za rezervaciju 
+    this.reservationService.makeReservation(noOfTickets,tick).subscribe(data =>{
+      alert("Successfull reservation.");
+      this.ngOnInit();
+    },
+    (error =>{
+      alert("Reservation failed.");
+    }));
+
   }
 
   deleteTicket(tick: any){

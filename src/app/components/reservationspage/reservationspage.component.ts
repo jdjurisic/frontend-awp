@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ReservationService } from 'src/app/services/reservation.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class ReservationspageComponent implements OnInit {
 
   reservations: any[] = [];
 
-  constructor(private router: Router, private userService:UserService) { }
+  constructor(private router: Router, private userService:UserService, private reservationService: ReservationService) { }
 
   ngOnInit(): void {
 
@@ -30,6 +31,13 @@ export class ReservationspageComponent implements OnInit {
 
   cancelReservation(res:any){
     console.log("Prosledjen objekat:" + res.id);
+    this.reservationService.cancelReservation(res.id).subscribe(data =>{
+      alert("Canceled.");
+      this.ngOnInit();
+    },
+    (error =>{
+      alert("Failed.");
+    }))
   }
 
   

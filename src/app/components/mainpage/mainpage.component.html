@@ -104,8 +104,8 @@
           <td>{{ tick.departureDate }}</td>
           <td>{{ tick.returnDate ? tick.returnDate : "Not available" }}</td>
           <td>{{ tick.count }}</td>
-          <td *ngIf="!isUserType" > <button type="button" class="btn btn-danger btn-sm">delete</button> </td>
-          <td *ngIf="!isUserType" > <button type="button" class="btn btn-warning btn-sm">edit</button> </td>
+          <td *ngIf="!isUserType" > <button type="button" (click)="deleteTicket(tick)" class="btn btn-danger btn-sm">delete</button> </td>
+          <td *ngIf="!isUserType" > <button type="button" (click)="editTicket(tick)" class="btn btn-warning btn-sm">edit</button> </td>
           <td *ngIf="isUserType">           
             <input type="number" name="reservationCounter" id="{{i}}"> 
             <button type="button" class="btn btn-warning btn-sm" (click)="reserve(i)">reserve</button> 

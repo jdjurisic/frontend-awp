@@ -19,4 +19,17 @@ export class TicketService {
   getAllTickets(){
     return this.http.get<any>(this.ticketUrl + "/all");
   }
+
+  deleteTicketById(id: string){
+    return this.http.delete<any>(this.ticketUrl + "/" + id);
+  }
+
+  getTicketById(id: string){
+    return this.http.get<any>(this.ticketUrl + "/" + id);
+  }
+
+  editTicket(ticket: any){
+    return this.http.put<any>(this.ticketUrl + "/" + ticket.id, ticket);
+  }
+
 }

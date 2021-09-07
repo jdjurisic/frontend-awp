@@ -16,6 +16,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { ReservationspageComponent } from './components/reservationspage/reservationspage.component';
 import { UsertypeGuard } from './auth/usertype.guard';
 import { AdmintypeGuard } from './auth/admintype.guard';
+import { EditticketComponent } from './components/editticket/editticket.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AdmintypeGuard } from './auth/admintype.guard';
     PagenotfoundComponent,
     TopmenuComponent,
     FooterComponent,
-    ReservationspageComponent
+    ReservationspageComponent,
+    EditticketComponent
   ],
   imports: [
     BrowserModule,

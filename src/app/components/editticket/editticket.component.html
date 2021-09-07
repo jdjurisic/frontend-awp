@@ -1,0 +1,60 @@
+<app-topmenu></app-topmenu>
+
+<div class="wrapper2">
+
+    <div *ngIf="ticket" id="formContent2" class="span6">
+        <form [formGroup]="editTicketForm" (ngSubmit)="editTicket()">
+            <div>
+                <label>company {{ ticket.company.name }}</label>
+                <select [formControlName]="'company'" name="company" required>
+                    <option *ngFor="let cmp of companies" [ngValue]="cmp">
+                        {{ cmp.name }}
+                    </option>
+                </select>    
+            </div>
+
+            <div>
+                <label>flight {{ ticket.flight.origin.name }} - {{ ticket.flight.destination.name }}</label>
+                <select [formControlName]="'flight'" name="flight" required>
+                    <option *ngFor="let flg of flights" [ngValue]="flg">
+                        {{ flg.origin.name }} - {{ flg.destination.name }}
+                    </option>
+                </select>    
+            </div>
+
+            <div>
+                <label>type {{ ticket.oneway ? "Oneway" : "Round trip" }}</label>
+                <select [formControlName]="'oneway'" name="oneway" required>
+                    <option selected value="false">Roundtrip</option>
+                    <option value="true">Oneway</option>
+                </select>
+            </div>
+
+            <div>
+                <label>no. of tickets {{ ticket.count }}</label>
+                <input type="number" class="myinput" [formControlName]="'count'" name="count" required>
+            </div>
+
+            <div>
+                <label>departure {{ ticket.departureDate }}</label>
+                <input type="datetime-local" [formControlName]="'departureDate'" name="depart">
+            </div>
+
+            <div>
+                <label>return {{ ticket.returnDate ? ticket.returnDate : "Not available" }}</label>
+                <input type="datetime-local" [formControlName]="'returnDate'" name="returndate">
+            </div>
+            
+            
+            <input type="submit" value="edit ticket">
+        </form>
+
+        <button class="btn btn-danger " (click)="resetForm()" style="margin-bottom: 25px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+              </svg>
+        </button>
+
+ 
+        </div>

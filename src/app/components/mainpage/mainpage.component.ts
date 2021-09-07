@@ -2,6 +2,7 @@ import { preserveWhitespacesDefault } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { Router } from '@angular/router';
 import { CompanyService } from 'src/app/services/company.service';
 import { FlightService } from 'src/app/services/flight.service';
 import { TicketService } from 'src/app/services/ticket.service';
@@ -25,7 +26,7 @@ export class MainpageComponent implements OnInit {
   tickets: [] = [];
 
 
-  constructor(private userService:UserService, private flightService:FlightService, private companyService:CompanyService, private ticketService:TicketService ) { 
+  constructor(private userService:UserService, private flightService:FlightService, private companyService:CompanyService, private ticketService:TicketService,   private router: Router ) { 
     this.createUserForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(6)]),
       password: new FormControl('', Validators.required),
@@ -144,5 +145,21 @@ export class MainpageComponent implements OnInit {
     // fja za rezervaciju 
   }
 
+  deleteTicket(tick: any){
+    this.ticketService.deleteTicketById(tick.id).subscribe(data =>{
+      alert("Successfully deleted.");
+      this.ticketService.getAllTickets().subscribe(data =>{
+        this.tickets = data;
+      });
+    },
+    (error =>{
+      alert("Delete failed.");
+    }))
 
+  }
+
+
+  editTicket(tick: any){
+    this.router.navigate(["/tedit/"+tick.id]);
+  }
 }

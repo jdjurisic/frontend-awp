@@ -13,5 +13,13 @@ export class CompanyService {
   getCompanies(){
     return this.http.get<any>(this.companyUrl + "/all");
   }
+
+  getCompanyById(id: string){
+    return this.http.get<any>(this.companyUrl + "/" + id);
+  }
+
+  deleteCompanyById(id: string){
+    return this.http.delete<any>(this.companyUrl + "/" + id);
+  }
   
 }

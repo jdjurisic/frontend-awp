@@ -17,6 +17,7 @@ import { ReservationspageComponent } from './components/reservationspage/reserva
 import { UsertypeGuard } from './auth/usertype.guard';
 import { AdmintypeGuard } from './auth/admintype.guard';
 import { EditticketComponent } from './components/editticket/editticket.component';
+import { CompanyeditComponent } from './components/companyedit/companyedit.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EditticketComponent } from './components/editticket/editticket.componen
     TopmenuComponent,
     FooterComponent,
     ReservationspageComponent,
-    EditticketComponent
+    EditticketComponent,
+    CompanyeditComponent
   ],
   imports: [
     BrowserModule,

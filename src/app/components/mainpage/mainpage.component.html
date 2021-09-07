@@ -105,7 +105,7 @@
         <tr *ngFor="let tick of tickets; index as i">
           <td>{{ tick.flight.origin.name }}</td>
           <td>{{ tick.flight.destination.name }}</td>
-          <td>{{ tick.company.name }}</td>
+          <td><a [routerLink]="['/cedit', tick.company.id]">{{ tick.company.name }}</a></td>
           <td>{{ tick.oneway ? "Oneway" : "Round trip" }}</td>
           <td>{{ tick.departureDate }}</td>
           <td>{{ tick.returnDate ? tick.returnDate : "Not available" }}</td>

@@ -1,0 +1,12 @@
+<app-topmenu></app-topmenu>
+
+<div class="wrapper">
+    <h1>{{ company.name}} </h1>
+
+    <div *ngIf="!isUserType">
+        <button class="btn btn-danger" (click)="deleteCompany()">Delete</button>
+
+    </div>
+
+
+</div>

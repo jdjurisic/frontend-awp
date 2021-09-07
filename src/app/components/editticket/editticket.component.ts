@@ -71,25 +71,21 @@ export class EditticketComponent implements OnInit {
     let polazak = this.editTicketForm.get('departureDate').value;
     let povratak = this.editTicketForm.get('returnDate').value;
 
-    if(komp){
-      this.ticket.company = komp;
-    }
+    if(komp)    this.ticket.company = komp;
+    if(vanway)  this.ticket.oneway = vanway;
+    if(flajt)   this.ticket.flight = flajt;
+    if(broj)    this.ticket.count = broj;
+    if(polazak) this.ticket.departureDate = polazak;
+    if(povratak)this.ticket.returnDate = povratak;
 
     this.ticketService.editTicket(this.ticket).subscribe(data =>{
-      console.log("Uspesno");
+      alert("Successfully updated.");
+      this.editTicketForm.reset();
     },
     (error =>{
-      console.log("Fail");
+      alert("Ticket wasn't updated. Try again");
     }))
-
-    // this.ticketService.createNewTicket(ticket).subscribe(data =>{
-    //   alert("Ticket successfully created.");
-    // },
-    // (error =>{
-    //   alert("Ticket wasn't created. Try again");
-    // }));
-
-    // this.editTicketForm.reset();
+  
   }
 
   resetForm(){

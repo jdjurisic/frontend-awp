@@ -96,8 +96,8 @@ export class CompanyeditComponent implements OnInit {
   deleteTicket(tick: any){
     this.ticketService.deleteTicketById(tick.id).subscribe(data =>{
       alert("Successfully deleted.");
-      this.ticketService.getAllTickets(0).subscribe(data =>{
-        this.tickets = data.content;
+      this.companyService.getTicketsForCompany(this.id).subscribe(data =>{
+        this.tickets = data;
       });
     },
     (error =>{

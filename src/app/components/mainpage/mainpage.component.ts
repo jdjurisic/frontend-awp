@@ -44,7 +44,7 @@ export class MainpageComponent implements OnInit {
       company: new FormControl('', Validators.required),
       oneway: new FormControl('', Validators.required),
       departureDate: new FormControl('', Validators.required),
-      returnDate: new FormControl('', Validators.required),
+      returnDate: new FormControl(''),
       flight: new FormControl('', Validators.required),
       count: new FormControl('', Validators.min(1))
     });
@@ -124,7 +124,7 @@ export class MainpageComponent implements OnInit {
     let flajt = this.createTicketForm.get('flight')!.value;
     let broj = this.createTicketForm.get('count')!.value;
     let polazak = this.createTicketForm.get('departureDate')!.value;
-    let povratak = this.createTicketForm.get('returnDate')!.value;
+    let povratak = this.createTicketForm.get('returnDate').value;
 
     let ticket = {
       "company": komp,

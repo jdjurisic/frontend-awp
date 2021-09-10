@@ -1,11 +1,72 @@
 <app-topmenu></app-topmenu>
 
 <div class="wrapper">
-    <h1>{{ company.name}} </h1>
+    <div *ngIf="company">
+        <h1>{{ company.name}}  <button *ngIf="!isUserType" class="btn btn-danger" (click)="deleteCompany()">Delete</button></h1>
+    </div>
+   
 
     <div *ngIf="!isUserType">
-        <button class="btn btn-danger" (click)="deleteCompany()">Delete</button>
 
+        <div id="formContent2" >
+            <form [formGroup]="editCompanyForm" (ngSubmit)="editCompanyName()">
+
+                <div>
+                    <label> enter new name </label>
+                    <input type="text" [formControlName]="'editedname'" name="editedname" required>
+                </div>
+
+                <input type="submit" value="edit company">
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="tickets.length > 0" class="wrapper2">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Origin</th>
+              <th scope="col">Destination</th>
+              <th scope="col">Company</th>
+              <th scope="col">Type</th>
+              <th scope="col">Departure</th>
+              <th scope="col">Return Date</th>
+              <th scope="col">Count</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tick of tickets; index as i">
+              <td>{{ tick.flight.origin.name }}</td>
+              <td>{{ tick.flight.destination.name }}</td>
+              <td><a [routerLink]="['/cedit', tick.company.id]">{{ tick.company.name }}</a></td>
+              <td>{{ tick.oneway ? "Oneway" : "Round trip" }}</td>
+              <td>{{ tick.departureDate }}</td>
+              <td>{{ tick.returnDate ? tick.returnDate : "Not available" }}</td>
+              <td>{{ tick.count }}</td>
+              <td *ngIf="!isUserType" > <button type="button" (click)="deleteTicket(tick)" class="btn btn-danger btn-sm">delete</button> </td>
+              <td *ngIf="!isUserType" > <button type="button" (click)="editTicket(tick)" class="btn btn-warning btn-sm">edit</button> </td>
+              <td *ngIf="isUserType">           
+                <input type="number" name="reservationCounter" id="{{i}}" style="width: 60px; margin-right: 10px;"> 
+                <button type="button" class="btn btn-warning btn-sm" (click)="reserve(i,tick)">reserve</button> 
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+    </div>
+
+    <div id="formContent" *ngIf="!isUserType">
+        <form [formGroup]="createCompanyForm" (ngSubmit)="createNewCompany()">
+
+            <div>
+                <label>company name</label>
+                <input type="text" [formControlName]="'name'" name="name" required>
+            </div>
+
+            <input type="submit" value="Create new company">
+        </form>
     </div>
 
 

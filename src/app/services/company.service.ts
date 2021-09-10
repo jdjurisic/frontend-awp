@@ -22,4 +22,20 @@ export class CompanyService {
     return this.http.delete<any>(this.companyUrl + "/" + id);
   }
   
+  getTicketsForCompany(id: string){
+    return this.http.get<any>(this.companyUrl + "/tickets/" + id);
+  }
+
+  createCompany(name: string){
+    let cmp = {
+      "name":name
+    };
+
+    return this.http.post<any>(this.companyUrl,cmp);
+  }
+
+  editCompany(comp: any){
+    return this.http.put<any>(this.companyUrl, comp);
+  }
+
 }
